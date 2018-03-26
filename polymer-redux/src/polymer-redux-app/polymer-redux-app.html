@@ -1,0 +1,37 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../mensaje/visualizar-mensaje.html">
+<link rel="import" href="../mensaje/resetear-mensaje.html">
+<link rel="import" href="../mensaje/actualizar-mensaje.html">
+
+<dom-module id="polymer-redux-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <visualizar-mensaje></visualizar-mensaje>
+    <resetear-mensaje></resetear-mensaje>
+    <actualizar-mensaje></actualizar-mensaje>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerReduxApp extends Polymer.Element {
+      static get is() { return 'polymer-redux-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polymer-redux-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolymerReduxApp.is, PolymerReduxApp);
+  </script>
+</dom-module>

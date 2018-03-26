@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux/redux-mixin.html">
+
+<dom-module id="todo-add">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <input type="text" id="texto">
+    <button on-click="crearTodo">Crear Tarea</button>
+
+  </template>
+
+  <script>
+
+    class TodoAdd extends ReduxMixin(Polymer.Element) {
+
+      static get is() {
+        return 'todo-add';
+      }
+
+      static get actions() {
+        return {
+          addTodo(todo) {
+            return {
+              type: 'ADD_TODO',
+              todo: todo
+            }
+          }
+        };
+      }
+
+      crearTodo() {
+        const texto = this.$.texto.value;
+        if(texto) {
+          this.dispatch('addTodo', {
+            description: texto,
+            completed: false
+          });
+          this.$.texto.value = '';
+          this.$.texto.focus();
+        }
+      }
+
+    }
+
+    window.customElements.define(TodoAdd.is, TodoAdd);
+  </script>
+</dom-module>

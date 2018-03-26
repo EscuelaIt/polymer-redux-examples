@@ -1,0 +1,6 @@
+{
+  "name": "redux-asincrono",
+  "short_name": "redux-asincrono",
+  "start_url": "/",
+  "display": "standalone"
+}

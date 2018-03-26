@@ -1,0 +1,26 @@
+<link rel="import" href="./redux-dependencies.html">
+
+<script>
+
+    // Creamos el store
+    const estadoInicial = {
+      msg: 'Hola Mundo'
+    };
+
+    const reducer = (state, action) => {
+      switch (action.type) {
+        case 'RESET_MSG':
+          return Object.assign( {}, state, { msg: ''} );
+        case 'UPDATE_MSG':
+          return Object.assign( {}, state, { msg: action.texto} );
+        default:
+          return state;
+      }
+    }; 
+
+    const store = Redux.createStore(reducer, estadoInicial);
+
+    // Creamos el mixin asociado a este store
+    ReduxMixin = PolymerRedux(store);
+
+</script>

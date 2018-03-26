@@ -1,0 +1,32 @@
+<link rel="import" href="./redux-dependencies.html">
+
+<script>
+
+    // Creamos el store
+    const estadoInicial = {
+      todos: []
+    };
+
+    const reducer = (state, action) => {
+      switch (action.type) {
+        case 'ADD_TODO':
+          console.log('add_todo reducer', action, state);
+          const todos = state.todos.slice();
+          todos.push(action.todo);
+          return Object.assign({}, state, { todos });
+        case 'TODO_STATE_CHANGE':
+          console.log('TODO_STATE_CHANGE reducer', action, state);      
+          const todosChanged = state.todos.slice();
+          todosChanged[action.index].completed = action.completed;
+          return Object.assign({}, state, { todos: todosChanged });          
+        default:
+          return state;
+      }
+    }; 
+
+    const store = Redux.createStore(reducer, estadoInicial);
+
+    // Creamos el mixin asociado a este store
+    ReduxMixin = PolymerRedux(store);
+
+</script>

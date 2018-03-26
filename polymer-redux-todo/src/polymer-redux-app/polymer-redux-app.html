@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../todo/todo-add.html">
+<link rel="import" href="../todo/todo-list.html">
+
+<dom-module id="polymer-redux-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <todo-add></todo-add>
+    <todo-list></todo-list>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerReduxApp extends Polymer.Element {
+      static get is() { return 'polymer-redux-app'; }
+      static get properties() {
+        return {
+
+        };
+      }
+    }
+
+    window.customElements.define(PolymerReduxApp.is, PolymerReduxApp);
+  </script>
+</dom-module>

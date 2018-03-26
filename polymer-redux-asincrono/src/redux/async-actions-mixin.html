@@ -1,0 +1,20 @@
+<link rel="import" rel="redux-mixin.html">
+<script>
+
+  AsyncActionsMixin = SuperClass => class extends ReduxMixin(SuperClass) {
+    static get actions() {
+      return {
+        singUpWithTimeout(username) {
+          return dispatch => {
+            dispatch( { type: 'SIGN_UP_STARTED' });
+            setTimeout(
+              () => dispatch( {type: 'SIGN_UP_COMPLETED', username} ),
+              3000
+            );
+          }
+        }
+      }
+    }
+  }
+
+</script>

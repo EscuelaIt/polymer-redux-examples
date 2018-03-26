@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="todo-item">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+      p {
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+      }
+      .todocompletada {
+        text-decoration: line-through;
+        color: #999;
+      }
+    </style>
+
+    <p class$="[[todoClass]]">
+      <input type="checkbox" id="check" on-click="cambiar"> [[todo.description]]
+    </p>
+
+  </template>
+
+  <script>
+
+    class TodoItem extends Polymer.MutableData(ReduxMixin(Polymer.Element)) {
+      
+      static get is() {
+        return 'todo-item';
+      }
+
+      static get properties() {
+        return {
+          todo: Object,
+          index: Number,
+          todoClass: {
+            type: String,
+            computed: 'setClass(todo.completed)'
+          }
+        };
+      }
+
+      cambiar() {
+        this.dispatch({
+          type: 'TODO_STATE_CHANGE',
+          completed: this.$.check.checked,
+          index: this.index
+        });
+      }
+
+      setClass(completed) {
+        if(completed) {
+          return 'todocompletada';
+        }
+        return ''
+      }
+
+    }
+
+    window.customElements.define(TodoItem.is, TodoItem);
+  </script>
+</dom-module>

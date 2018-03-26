@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux/async-actions-mixin.html">
+
+<dom-module id="sign-up">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <input type="text" id="username">
+    <button on-click="signUp">Sign Up</button>
+  </template>
+
+  <script>
+
+    class SignUp extends AsyncActionsMixin(Polymer.Element) {
+      static get is() {
+        return 'sign-up';
+      }
+
+      static get properties() {
+        return {
+          
+        };
+      }
+
+      signUp() {
+        const username = this.$.username.value;
+        this.dispatch('singUpWithTimeout', username);
+      }
+
+    }
+
+    window.customElements.define(SignUp.is, SignUp);
+  </script>
+</dom-module>

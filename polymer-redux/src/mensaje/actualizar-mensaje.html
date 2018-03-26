@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux/redux-mixin.html">
+
+<dom-module id="actualizar-mensaje">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <input type="text" id="texto">
+    <button on-click="actualizar">Actualizar mensaje</button>
+
+  </template>
+
+  <script>
+    
+    class ActualizarMensaje extends ReduxMixin(Polymer.Element) {
+     
+      static get is() {
+        return 'actualizar-mensaje';
+      }
+
+      actualizar() {
+        this.dispatch({
+          type: 'UPDATE_MSG',
+          texto: this.$.texto.value
+        });
+      }
+    }
+
+    window.customElements.define(ActualizarMensaje.is, ActualizarMensaje);
+
+  </script>
+</dom-module>

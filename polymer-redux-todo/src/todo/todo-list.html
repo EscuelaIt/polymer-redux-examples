@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="../redux/redux-mixin.html">
+<link rel="import" href="./todo-item.html">
+
+<dom-module id="todo-list">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[todos]]" as="todo" mutable-data>
+      <todo-item todo="[[todo]]" index="[[index]]"></todo-item>
+    </template>
+
+  </template>
+
+  <script>
+
+    class TodoList extends ReduxMixin(Polymer.Element) {
+
+      static get is() {
+        return 'todo-list';
+      }
+
+      /**
+        * Object describing property-related metadata used by Polymer features
+        */
+      static get properties() {
+        return {
+          todos: {
+            type: Array,
+            statePath(state) {
+              return state.todos;
+            }
+          }
+        };
+      }
+
+    }
+
+    window.customElements.define(TodoList.is, TodoList);
+  </script>
+</dom-module>

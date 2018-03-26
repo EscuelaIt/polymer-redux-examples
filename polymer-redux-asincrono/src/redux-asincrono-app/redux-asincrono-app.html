@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux/redux-dependencies.html">
+<link rel="import" href="../redux/redux-mixin.html">
+<link rel="import" href="../user/sign-up.html">
+<link rel="import" href="../interface/notification-bar.html">
+
+<dom-module id="redux-asincrono-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <sign-up></sign-up>
+    <notification-bar></notification-bar>
+  </template>
+
+  <script>
+    class ReduxAsincronoApp extends Polymer.Element {
+      static get is() { return 'redux-asincrono-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'redux-asincrono-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ReduxAsincronoApp.is, ReduxAsincronoApp);
+  </script>
+</dom-module>

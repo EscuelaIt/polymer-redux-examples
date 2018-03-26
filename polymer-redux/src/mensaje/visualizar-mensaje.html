@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux/redux-mixin.html">
+
+<dom-module id="visualizar-mensaje">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    Mensaje: [[msg]]
+
+  </template>
+
+  <script>
+    
+    class VisualizarMensaje extends ReduxMixin(Polymer.Element) {
+     
+      static get is() {
+        return 'visualizar-mensaje';
+      }
+
+      static get properties() {
+        return {
+          msg: {
+            type: String,
+            statePath: 'msg'
+          }
+        };
+      }
+
+    }
+
+    window.customElements.define(VisualizarMensaje.is, VisualizarMensaje);
+
+  </script>
+</dom-module>

@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer-redux/polymer-redux.html">
+
+<script>
+  // estado inicial
+  const estadoInicial = {
+    loading: false,
+    username: null
+  }
+
+  const reducer = (state, action) => {
+    switch(action.type) {
+      case 'SIGN_UP_STARTED':
+        return Object.assign( {}, state, { loading: true } );
+      case 'SIGN_UP_COMPLETED':
+        return Object.assign( {}, state, { 
+          loading: false,
+          username: action.username
+        });
+    }
+  }
+
+  const store = Redux.createStore(
+    reducer, 
+    estadoInicial, 
+    Redux.applyMiddleware(ReduxThunk.default)
+  );
+
+  ReduxMixin = PolymerRedux(store);
+</script>
